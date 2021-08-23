@@ -1,0 +1,39 @@
+<html>
+<body>
+
+<button onclick="convertCandF(10,'c')">convertCandF 10 c</button><br/>
+<button onclick="convertCandF(98.6,'f')">convertCandF 98.6 f </button><br/>
+<button onclick="convertCandF(20)">convertCandF 20</button> second parameter is missing -> convert from C to F <br/>
+<button onclick="convertCandF('f')">convertCandF f</button> first parameter has wrong type: error message<br/>
+<button onclick="convertCandF()">convertCandF</button> all parameters are missing: error message<br/>
+
+<p id="demo"></p>
+
+<script>
+function FtoC(temp) {
+  return (temp - 32)/1.8
+}
+
+function CtoF(temp) {
+  return 1.8*temp + 32;
+}
+
+function convertCandF(temp, format) {
+  str = "<i>temp</i> has type: <b>"+ typeof(temp) + "</b><br/><i>format</i> has type: <b>" + typeof(format)+"</b><br/><br/>"
+  if (typeof(temp) != "number") {
+	str+="<b>Error:</b> first parameter has wrong type, <i>number</i> expected...";
+  } 
+  else {
+    if (format=='f') {
+      str+=temp+" Fahrenheight is approx. " + FtoC(temp) + " C."
+    }
+    if (format=='c' || typeof(format)==='undefined') {
+	    str += temp+" Celcius is approx. " + CtoF(temp) + " F."
+	}
+  }
+  document.getElementById("demo").innerHTML = str;
+}
+</script>
+
+</body>
+</html>
